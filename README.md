@@ -1,6 +1,6 @@
 ##### Instructions:
 * This project can be run with Java SE 8 or upwards, and Maven 3.5.x.
-* Run `mvn clean package` to build the project. This will produce a jar file in the `target` directory.
+* Run `./mvnw clean package` to build the project. This will produce a jar file in the `target` directory.
 * Run `java -jar target/message-digest-0.0.1-SNAPSHOT.jar` to run the application.
 * Use `curl` or Postman to issue POST or GET commands to `http:\\localhost:8080\messages`.
 

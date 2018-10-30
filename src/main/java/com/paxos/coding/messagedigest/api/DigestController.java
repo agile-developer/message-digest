@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
+/**
+ * Controller class that provides our API endpoints.
+ *
+ */
 @RestController
 @RequestMapping(value = "/messages")
 public class DigestController {
@@ -27,6 +31,12 @@ public class DigestController {
         this.digestService = digestService;
     }
 
+    /**
+     * Extract the message from the request-body and invoke {@link DigestService} to generate a digest.
+     *
+     * @param request request containing message to be converted to a SHA-256 digest.
+     * @return response containing a hexadecimal string digest for {@code request}
+     */
     @PostMapping
     public ResponseEntity<DigestResponse> calculateDigest(@RequestBody Message request) {
 
@@ -41,6 +51,13 @@ public class DigestController {
         return ResponseEntity.ok(digestResponse);
     }
 
+    /**
+     * Extract hexadecimal digest from the request-body and invoke {@link DigestService} to map digest to its original message.
+     * If the digest is unknown to this service, return an 'HTTP 404 - Not Found' response.
+     *
+     * @param digest hexadecimal string digest for a previously submitted message.
+     * @return original string message for the given {@code digest}.
+     */
     @GetMapping(value = "/{digest}")
     public ResponseEntity<? extends Message> retrieveMessageForDigest(@PathVariable String digest) {
 

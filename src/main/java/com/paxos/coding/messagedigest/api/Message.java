@@ -1,5 +1,9 @@
 package com.paxos.coding.messagedigest.api;
 
+/**
+ * DTO representing a request/response containing a string message.
+ *
+ */
 public class Message {
 
     private String message;
@@ -18,6 +22,10 @@ public class Message {
         this.message = message;
     }
 
+    /**
+     * DTO representing an error when a digest cannot be mapped to a message.
+     *
+     */
     public static class ErrorResponse extends Message {
 
         private String errorMessage;

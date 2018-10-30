@@ -9,6 +9,12 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Component used to store two-way mappings between a SHA-256 digest and its original message.
+ * This is a naive implementation that uses two separate {@link Map} instances to store mappings entirely in memory.
+ * A more robust implementation would persist these mappings to a more durable datastore.
+ *
+ */
 @Component
 public class DigestRepository {
 

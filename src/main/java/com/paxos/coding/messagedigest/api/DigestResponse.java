@@ -1,5 +1,9 @@
 package com.paxos.coding.messagedigest.api;
 
+/**
+ * DTO representing a response containing a hexadecimal digest.
+ *
+ */
 public class DigestResponse {
 
     private String digest;

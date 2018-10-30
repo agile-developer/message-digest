@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import javax.validation.constraints.NotBlank;
 import java.util.Optional;
 
+/**
+ * Component responsible for generating SHA-256 digests for messages and storing mappings in {@link DigestRepository}.
+ *
+ */
 @Service
 public class DigestService {
 
@@ -20,6 +24,14 @@ public class DigestService {
         this.digestRepository = digestRepository;
     }
 
+    /**
+     * Calculate SHA-256 digest for the given {@code message}. This method will check the cache in {@link DigestRepository}
+     * to see if {@code message} has already been hashed. If a digest is not found, it will proceed with the calculation,
+     * otherwise the existing value will be returned. It will also store a new digest mapped to its message via {@link DigestRepository}.
+     *
+     * @param message message for which SHA-256 digest is required.
+     * @return hexadecimal string representing SHA-256 digest for {@code message}.
+     */
     public Optional<String> calculateDigest(@NotBlank String message) {
 
         if (DigestUtils.IS_BLANK.test(message)) {
@@ -51,6 +63,13 @@ public class DigestService {
         return digestOpt;
     }
 
+    /**
+     * Retrieve original message for given {@code digest}. This method invokes {@link DigestRepository} to search its
+     * cache for the original message.
+     *
+     * @param digest hexadecimal string representing SHA-256 digest for a (previously encoded) message.
+     * @return original message for the given {@code digest}. If no mapping is found an empty {@link Optional} is returned.
+     */
     public Optional<String> retrieveMessageForDigest(@NotBlank String digest) {
 
         if (DigestUtils.IS_BLANK.test(digest)) {

@@ -6,6 +6,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+/**
+ * Convenience class to provide useful methods and functions.
+ *
+ */
 public class DigestUtils {
 
     private DigestUtils() {
@@ -34,6 +38,11 @@ public class DigestUtils {
         return new DigestResult(digest, exception);
     };
 
+    /**
+     * Wrapper class containing the result of a hashing operation. If the operation succeeds 'digest' will be populated
+     * otherwise 'exception' will be set to the cause of the failure.
+     *
+     */
     public static class DigestResult {
 
         private String digest;
